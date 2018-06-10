@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+    before_action :set_article, only: [:edit, :update, :show, :destroy]
+    
     
     def index
     @articles = Article.all
@@ -21,16 +23,16 @@ class ArticlesController < ApplicationController
     end
     
     def show
-       @article = Article.find(params[:id])
+     #  @article = Article.find(params[:id])
     end
     
     
     def edit 
-        @article = Article.find(params[:id])
+       # @article = Article.find(params[:id])
     end 
     
     def update
-         @article = Article.find(params[:id])
+       #  @article = Article.find(params[:id])
         if @article.update(article_params)
             flash[:notice] = "Se ha actualizado!"
             redirect_to article_path(@article)
@@ -40,7 +42,7 @@ class ArticlesController < ApplicationController
     end
     
     def destroy 
-        @article = Article.find(params[:id])
+        #@article = Article.find(params[:id])
         @article.destroy
         flash[:notice] = "Se fue, se fue, como..."
         redirect_to articles_path
