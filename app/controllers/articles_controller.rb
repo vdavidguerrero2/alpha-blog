@@ -16,7 +16,6 @@ class ArticlesController < ApplicationController
             flash[:notice] = "Se creo el articulo,manito!"
             redirect_to article_path(@article)
         else 
-            
             render 'new'
         end
     end
@@ -36,12 +35,24 @@ class ArticlesController < ApplicationController
             flash[:notice] = "Se ha actualizado!"
             redirect_to article_path(@article)
         else 
-            
             render 'edit'
         end
     end
     
+    def destroy 
+        @article = Article.find(params[:id])
+        @article.destroy
+        flash[:notice] = "Se fue, se fue, como..."
+        redirect_to articles_path
+        
+    end
+    
+    
     private 
+    
+    def set_article
+        @article = Article.find(params[:id])
+    end
     
     def article_params
         params.require(:article).permit(:title, :description)
